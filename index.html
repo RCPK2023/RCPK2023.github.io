@@ -1,1 +1,75 @@
-"Hello World"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homelab Overview</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .background {
+      background: #000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .parallax {
+      background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .spacer {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="parallax"></div>
+
+  <div class="spacer"></div>
+
+  <div class="container">
+    <h1>My Homelab</h1>
+    <p>Welcome to a quick peek into my personal homelab — a collection of machines and services duct-taped together with hope and YAML.</p>
+    <ul>
+      <li>OPNsense Firewall & WireGuard VPN</li>
+      <li>Technitium DNS + AdGuard Home</li>
+      <li>Active Directory with AD DS, DHCP, and DNS</li>
+      <li>Wazuh SIEM for monitoring logs like a paranoid squirrel</li>
+      <li>Jellyfin — because streaming should be free and flaky</li>
+      <li>Nginx Reverse Proxy, running containerized services</li>
+    </ul>
+    <p>Setup for both self-education and painful troubleshooting sessions at 3AM. Still under constant tinkering.</p>
+  </div>
+
+  <div class="spacer"></div>
+</body>
+</html>

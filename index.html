@@ -4,151 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homelab Documentation</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    body {
-      background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    .container {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 3rem 1rem;
-    }
-
-    .content-wrapper {
-      background-color: white;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      padding: 3rem 2rem;
-      max-width: 800px;
-      width: 100%;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .divider {
-      width: 100px;
-      height: 4px;
-      background-color: #000;
-      margin: 0 auto 2rem auto;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .text-section, .image-section {
-      width: 100%;
-    }
-
-    .text-section p, .text-section ul {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .text-section ul {
-      padding-left: 1.5rem;
-    }
-
-    .text-section li {
-      margin-bottom: 0.5rem;
-    }
-
-    .image-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 5px;
-  }
-
-  .image-section img {
-    max-width: 90%;
-    border-radius: 8px;
-  }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-top: 2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="content-wrapper">
-      <div class="title">Homelab Documentation</div>
-      <div class="divider"></div>
+<div class="container">
 
-      <div class="content">
-        <div class="text-section">
-          <p>Welcome to my work-in-progress homelab, which I’ve been tinkering with for the past three weeks.</p>
-          <ul>
-            <li><strong>OPNsense firewall</strong>, handling routing, NAT, and DHCP lease reservations for internal services</li>
-            <li><strong>Wazuh (SIEM/XDR)</strong> for monitoring and analyzing logs across the network</li>
-            <li><strong>Nginx</strong> as a reverse proxy to route HTTPS traffic to internal services and handle SSL termination</li>
-            <li><strong>AdGuard Home</strong> as a DNS sinkhole and for network-level ad/content blocking</li>
-            <li><strong>Dynu (Dynamic DNS)</strong> and <strong>Let’s Encrypt (Certificate Authority)</strong> for domain management and SSL provisioning</li>
-          </ul>
-          <p>Progress was redone since I had to revise and remove Windows Server services. It's now more containerized, more "Linux-y".</p>
+  <!-- Top -->
+  <div class="top-section">
+    <!-- Left: Showcase with slider -->
+    <div class="showcase">
+      <h1>Homelab Documentation</h1>
+      <div class="slider-wrapper">
+        <button class="slider-button" onclick="prevImage()">&#8592;</button>
+        <div class="slider-container">
+          <img id="slider-image" src="images/NetworkTopology.png" alt="Network Topology">
         </div>
-
-        <div class="image-section">
-          <img src="images/NetworkTopology.png" alt="Network Topology">
-          <p><em>This is the overview of the network topology. There are still plans I need to make it viable for blue team exercises.</em></p>
-        </div>
-
-        <div class="image-section">
-          <img src="images/ServiceToplogy.png" alt="Service Topology">
-          <p><em>Overview of the services topology. Since two of the services were done in Windows Server, I had to start over using this. Planning to add more in the future.</em></p>
-        </div>
-
-        <hr>
-
-        <div class="text-section">
-          <div class="section-title">Things to do</div>
-          <ul>
-            <li> Setup Nginx to use the certificate from Certbot for HTTPS for services</li>
-            <li> Setup Technitium as internal Authoritative server in case Dynu goes down</li>
-            <li> Upstream AdGuard with OPNsense</li>
-            <li> Reattach Wazuh agents on services</li>
-            <li> Add a hub and connect it upstream to the firewall to allow my server and laptop to be in the same subnet</li>
-            <li> Properly setup OPNsense</li>
-          </ul>
-
-          <div class="section-title">Future stuff to do</div>
-          <ul>
-            <li> Port forward via a reverse tunnel through WireGuard + OPNsense</li>
-            <li> Run a Nextcloud service as an alternative for Google Drive</li>
-            <li> Setup a NAS</li>
-          </ul>
-        </div>
-
+        <button class="slider-button" onclick="nextImage()">&#8594;</button>
       </div>
+      <p id="slider-caption" class="slider-caption">Overview of the network topology for blue team exercises.</p>
+    </div>
+
+    <!-- Right: Sidebar -->
+    <div class="nav-sidebar">
+      <a href="./progress1.html" class="nav-entry">
+        <div class="entry-title">Progress Update: 1</div>
+        <div class="entry-description">Restructure of the network topology and services</div>
+        <div class="entry-date">2025-08-23</div>
+      </a>
     </div>
   </div>
+
+  <!-- Bottom: Tasks -->
+  <div class="bottom-section">
+    <div class="task-list">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress green" style="width: 60%;">60%</div>
+        </div>
+      </div>
+      <div class="task-title">Things to do</div>
+      <ul>
+        <li class="completed">Setup Nginx to use the certificate from Certbot for HTTPS for services</li>
+        <li>Setup Technitium as internal Authoritative server in case Dynu goes down</li>
+        <li class="completed">Upstream AdGuard with OPNsense</li>
+        <li class="completed">Reattach Wazuh agents on services</li>
+        <li class="completed">Add a hub and connect it upstream to the firewall to allow my server and laptop to be in the same subnet</li>
+        <li>Properly setup OPNsense</li>
+      </ul>
+    </div>
+
+    <div class="task-list">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress gray" style="width: 0%;">0%</div>
+        </div>
+      </div>
+      <div class="task-title">Future stuff to do</div>
+      <ul>
+        <li>Port forward via a reverse tunnel through WireGuard + OPNsense</li>
+        <li>Run a Nextcloud service as an alternative for Google Drive</li>
+        <li>Setup a NAS</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/slider.js"></script>
 </body>
 </html>

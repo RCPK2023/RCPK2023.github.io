@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Update 1</title>
+
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/progress.css">
+</head>
+
+<body>
+  <div class="page-container">
+
+    <div class="top-section">
+    
+    <!-- Main content first -->
+
+    <div class="main-content">
+      <div class="content-box">
+        <div class="content-div">
+          <h1>Progress Report</h1>
+
+          <hr style="margin-bottom: 20px">
+
+          <p style="margin-bottom: 20px">
+            Well it's been about 6 weeks since I did this update, major changes have happend both for the network and services, I'll break it down from the biggest changes to the least,
+            firstly, all services now run on HTTPS for secure access, I restructured the DNS Filtering and upstreamed it on my Opnsense while also adding AdGuard itself to my Optiplex which
+            is currently hosting Opnsense. 
+          </p>
+
+          <p>
+            Security is back online, I added the wazuh agents again and removed the old ones, to start off with the actual point of the homelab which was simulating blue team I installed Metasploitable3 
+            for the purpose of manually penetrating it for analysis, additionally I also installed Ubuntu and added ART (Atomic Red Team) for automatic penetration, this should work as for vulnerability testing,
+            detection and response practice.
+          </p>
+        </div>
+
+        <div class="image-div">
+          <img src="./images/ServiceTopology.png" alt="Preview">
+        </div>
+
+        <div class="content-div">
+
+          <p style="margin-bottom: 20px">
+            <h3>HTTPS Setup</h3>
+
+            I set up HTTPS for my services using DynuDNS. I went with DynuDNS over DuckDNS because I saw complaints about DuckDNS connections, and honestly, I like having a proper TLD. Plus, there werent many tutorials for DynuDNS, which made it a nice challenge.
+            Most of the struggle was wrapping my head around Nginx reverse proxy configs, OPNsense DNS forwarding, and Lets Encrypt. The biggest headache was finding a way to make DynuDNS work with Lets Encrypt since most guides use Certbot. Luckily, I dug up an old tutorial that helped.
+            Setting up HTTP on Nginx was easy, but HTTPS? That took a lot of trial and error. I had to deal with redirect issues and DNS forwarding. In the end, I set OPNsense to recognize my domain (spire.ddnsfree.com) and forward it to Nginx, which then redirected everything to HTTPS. Took about two weeks to figure out, though to be fair, I skipped a few days because of work.
+          </p>
+
+          <p style="margin-bottom: 20px">
+            <h3>AdGuard Move</h3>
+
+            I used to run AdGuard in a separate container, but then I found out OPNsense supports plugins—including AdGuard. Since firewalls usually handle content filtering, I decided to make the switch. The only problem was ports. 
+            DNS and the GUI were fighting for space, so I pushed DNS to a different port and put the GUI on 3000. After some upstream tweaks, it worked fine. 
+            Now its nice seeing ads get blocked at the network level. I didnt even realize that it even has filtering our particular services entirely, so it's worth noting that down.
+          </p>
+
+
+          <p style="margin-bottom: 20px">
+            <h3>Blue Team Plans</h3>
+
+            With that done, I thought I could start blue team simulations. First stop: Metasploitable3 on Proxmox. Turns out its in VDI format, so I had to convert it. I also wanted to automate red team stuff with Atomic Red Team because it looked easy to set up. Spoiler: it wasnt. 
+            After two nights of messing around with PowerShell on Metasploitable3 which revolved about in finding a repository for old powershell to resorting to download a .deb then realizing that it's actually typed powershell not pswh,
+            even then ART (Atomic Red Team) didn't work, despite looking at the function which was causing the error my best bet was it was a compatbiliy issue stemming from powershell or ubuntu version being too old.
+            Still I decided to just use Metasploitable3 for manual vulnerability testing on my laptop.
+            Secondly I spun up an Ubuntu 18.04 machine for ART to work, in hindsight I probably should have realized that ART was designed for "as is" operating system. 
+          </p>
+          
+        </div>
+
+        <div class="image-div">
+          <img src="./images/NetworkTopology.png" alt="Preview">
+        </div>
+
+        <div class="content-div">
+
+          <p style="margin-bottom: 20px">
+
+            <h3>Network Change</h3>
+
+            Last but not the least, network change, I didnt realize sooner that having a hub would actually let me test my AdGuard in day to day operations, 
+            and expand on the network. Initially I wanted a switch so I can utilize VLANs however, a flat network would work fine assuming I did take preventive measures when testing.
+            Despite being a simple addition to the network it also allowed me to now actually make use of Kali in my Laptop to manually do vulnerability testing so it's a win win.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sidebar on the right -->
+    <div class="nav-sidebar">
+      <a href="index.html" class="nav-entry">
+        <div class="entry-title">← Back</div>
+        <div class="entry-description">Return to overview</div>
+        <div class="entry-date">2025-08-17</div>
+      </a>
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

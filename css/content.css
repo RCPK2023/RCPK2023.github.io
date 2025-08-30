@@ -1,9 +1,5 @@
 /* Background */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
     background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1950&q=80') 
       no-repeat center center fixed;
     background-size: cover;
@@ -21,7 +17,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    margin-left: 2vw;
   }
   
   /* Card in the middle */

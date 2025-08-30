@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ active: 'about', theme: 'dark' }" :class="theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/starfield.css">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="universe"></div>
+    <script defer src="./js/starfield.js"></script>
+
+    <!-- Sidebar Component -->
+    <div class="sidebar" x-data="sidebar">
+        <!-- Main buttons -->
+        <div class="main-buttons">
+            <a href="index.html">About Me</a>
+            <a>Progress</a>
+            <a>Network and Service Diagram</a>
+            <a href="hardware.html">Hardware</a>
+        </div>
+    
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <h2>Progress Updates</h2>
+            <a href="progress1.html" class="progress-link">
+                <div>
+                    <h3>Progress: 1</h3>
+                    <p>"First" official major update on the network and services</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+
+    <!-- Main Content -->
+    <div class="main">
+      <!-- About Me -->
+      <div class="section about card" x-show="active === 'about'" x-transition>
+          <div class="about-photo"></div>
+          <h2>About Me</h2>
+          <p>Hi! I'm a bit of a network enthusiast, during my free time I work on my homelab usually fixing whatever I've broken from the past night and adding another service, studying for CCNA Sec+ and learning Wireshark to solidy
+            my understanding of networking, this site will be my personal "blog" where I will document my findings on my homelab as a sort of checkpoint on how much I've done, hopefully by the end of this
+            I've done enough to call myself good enough.
+          </p>
+      </div>
+  
+      <!-- Split Section (Progress + Hardware + Network) -->
+      <div class="split" x-transition>
+          <!-- Left Column -->
+          <div class="left">
+              <div class="card" x-transition>
+                  <h2>Progress</h2>
+                  
+                  <div>
+                    <div class="progress-title">
+                        Current Project
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:70%"></div>
+                    </div>
+                    <div class="dropdown" x-transition>
+                        <a>Properly setting up OpnSense</a>
+                        <a>Integrating Technitium as internal authoratative server incase Dynu goes off</a>
+                        <a>Setting up Wazuh dashboard</a>
+                    </div>
+                </div>
+    
+                <div>
+                    <div class="progress-title">
+                        Future Project
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:0%"></div>
+                    </div>
+                    <div class="dropdown" x-transition>
+                        <a>Setting up a Wireguard and hosting a web server outside local network</a>
+                        <a>Automate updates of each containers and their applications and aggregate to a web frontend</a>
+                        <a">Setting DVWA and using WAF to protect it</a>
+                    </div>
+                </div>
+              </div>
+              <div class="card" x-transition>
+                  <h2>Hardware</h2>
+                  <div class="hardware-grid">
+                      <div class="hardware-item">Server</div>
+                      <div class="hardware-item">Router</div>
+                      <div class="hardware-item">Switch</div>
+                      <div class="hardware-item">Firewall</div>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Right Column -->
+<div class="right" 
+x-data="{
+   images: ['../images/NetworkTopologyOpaque.svg', '../images/ServicesTopologyOpaque.svg'],
+   currentIndex: 0,
+   showImage: true,
+   changeImage() {
+       this.showImage = false;
+       setTimeout(() => {
+           this.currentIndex = (this.currentIndex + 1) % this.images.length;
+           this.showImage = true;
+       }, 500); // wait for fade-out before switching
+   }
+}" 
+x-init="setInterval(() => changeImage(), 5000)">
+
+<div class="card" style="display: flex; flex-direction: column; flex: 1;">
+   <h2>Network & Service Diagram</h2>
+   <div class="diagram-placeholder image-container">
+    <template x-if="showImage">
+        <img :src="images[currentIndex]" 
+             alt="Diagram" 
+             class="fade-img"
+             x-transition:enter="fade-enter"
+             x-transition:enter-start="fade-enter-start"
+             x-transition:enter-end="fade-enter-end"
+             x-transition:leave="fade-leave"
+             x-transition:leave-start="fade-leave-start"
+             x-transition:leave-end="fade-leave-end">
+    </template>
+</div>
+
+</div>
+</div>
+
+</div>
+
+      </div>
+  </div>
+
+</body>
+</html>

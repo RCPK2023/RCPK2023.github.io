@@ -6,12 +6,34 @@
   <title>Progress Update 1</title>
 
 
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/progress.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/content.css">
 </head>
 
 <body>
   <div class="page-container">
+
+       <!-- Sidebar Component -->
+       <div class="sidebar" x-data="sidebar">
+        <!-- Main buttons -->
+        <div class="main-buttons">
+            <a href="index.html">About Me</a>
+            <a>Progress</a>
+            <a>Network and Service Diagram</a>
+            <a href="hardware.html">Hardware</a>
+        </div>
+    
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <h2>Progress Updates</h2>
+            <a href="progress1.html" class="progress-link">
+                <div>
+                    <h3>Progress: 1</h3>
+                    <p>"First" official major update on the network and services</p>
+                </div>
+            </a>
+        </div>
+    </div>
 
     <div class="top-section">
     
@@ -38,7 +60,7 @@
         </div>
 
         <div class="image-div">
-          <img src="./images/ServiceTopology.png" alt="Preview">
+          <img src="../images/ServicesTopologyOpaque.svg" alt="Preview">
         </div>
 
         <div class="content-div">
@@ -73,7 +95,7 @@
         </div>
 
         <div class="image-div">
-          <img src="./images/NetworkTopology.png" alt="Preview">
+          <img src="../images/NetworkTopologyOpaque.svg" alt="Preview">
         </div>
 
         <div class="content-div">
@@ -89,15 +111,6 @@
         </div>
 
       </div>
-    </div>
-
-    <!-- Sidebar on the right -->
-    <div class="nav-sidebar">
-      <a href="index.html" class="nav-entry">
-        <div class="entry-title">← Back</div>
-        <div class="entry-description">Return to overview</div>
-        <div class="entry-date">2025-08-17</div>
-      </a>
     </div>
 
 </div>

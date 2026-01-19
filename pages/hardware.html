@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,100 +14,111 @@
 <body>
   <div class="page-container">
 
-       <!-- Sidebar Component -->
-       <div class="sidebar" x-data="sidebar">
-        <!-- Main buttons -->
-        <div class="main-buttons">
-            <a href="../index.html">About Me</a>
-            <a>Progress</a>
-            <a>Network and Service Diagram</a>
-            <a href="hardware.html">Hardware</a>
-        </div>
-    
-        <!-- Progress Section -->
-        <div class="progress-section">
-            <h2>Progress Updates</h2>
-            <a href="progress1.html" class="progress-link">
-                <div>
-                    <h3>Progress: 1</h3>
-                    <p>"First" official major update on the network and services</p>
-                </div>
-            </a>
-        </div>
-    </div>
+    <!-- Sidebar Component -->
+    <div class="sidebar" x-data="sidebar">
+      <!-- Main buttons -->
+      <div class="main-buttons">
+        <a href="../index.html">About Me</a>
+        <a>Progress</a>
+        <a>Network and Service Diagram</a>
+        <a href="hardware.html">Hardware</a>
+      </div>
 
-    <div class="top-section">
-    
-    <!-- Main content first -->
-
-    <div class="main-content">
-      <div class="content-box">
-        <div class="content-div">
-          <h1>Hardware</h1>
-
-          <hr style="margin-bottom: 20px">
-
-          <p style="margin-bottom: 20px">
-            I managed to get a good bargain for the two most important devices in my network during my OJT in Manila, it's amazing how it's ALOT more cheaper in the cities, that and because it's also second hand still, 
-            the price compared to how powerful it is was worth it, the rest of my devices I already had laying around. 
-          </p>
-
-          <p>
-            First off, let's start with the most significant devices in my network, although I'm not going into the finer details of their specs since I already listed their model name
-          </p>
-        </div>
-
-        <div class="image-div">
-          <img src="../images/server.jpg" alt="Preview">
-        </div>
-
-        <div class="content-div">
-
-          <p style="margin-bottom: 20px">
-            <h3>ThinkCentre M920</h3>
-            
-            This is the most important device in my network, this acts as my server for hosting most of the services I'm using. I was initially worried that the storage wasn't enough and the specs however 
-            I overestimated that what is labeled as hardware requirements for systems assumed that it will be used for enterprise situations, to which I am only using it for myself meaning the applicatios are running 
-            not as heavily especially Wazuh
-          </p>
-          
-        </div>
-
-        <div class="image-div">
-          <img src="../images/firewall.jpg" alt="Preview">
-        </div>
-
-        <div class="content-div">
-
-          <p style="margin-bottom: 20px">
-
-            <h3>Optiplex 9020 Micro</h3>
-
-           This acts as my firewall / DHCP server / DNS Forwarder / NAT, I wanted to fit a NIC card inside however it was out of my budget so I settled with using a USB to Ethernet Adapter for my LAN port, I'm not handling any big data or speed necessary to need a dedicated NIC card
-           so far it's working perfectly. The specs of it is equal to my server, I actually wanted to make both into a cluster but I opted out the idea since seperate function was better, also because it would be a hassle
-           to open my server, hub and firewall just so I can use the firewall. The specs are underutilized despite running alongside Suricata and AdGuard
-          </p>
-        </div>
-
-        <div class="image-div">
-            <img src="../images/hub.jpg" alt="Preview">
+      <!-- Progress Section -->
+      <div class="progress-section">
+        <h2>Progress Updates</h2>
+        <a href="progress1.html" class="progress-link">
+          <div>
+            <h3>Progress: 1</h3>
+            <p>"First" official major update on the network and services</p>
           </div>
-  
-          <div class="content-div">
-  
-            <p style="margin-bottom: 20px">
-  
-              <h3>Edimax Switch Hub</h3>
-  
-            Acts as connection for both my laptop and server, since it's a hub it doesnt support anything higher than L1 so I don't have anything fancy like VLAN so no network segmentation other than NAT from my firewall.
-            Still, it's a nice addition to the network topology and hooking them up together with cables was fun, luckily I did have enough cables lying around to spare for it.
-            </p>
-          </div>
-
+        </a>
       </div>
     </div>
 
-</div>
+    <div class="top-section">
+
+      <!-- Main content first -->
+
+      <div class="main-content">
+        <div class="content-box">
+          <div class="content-div">
+            <h1>Hardware</h1>
+
+            <hr style="margin-bottom: 20px">
+
+            <p style="margin-bottom: 20px">
+              I managed to get a good bargain for the two most important devices in my network during my OJT in Manila,
+              it's amazing how it's ALOT more cheaper in the cities, that and because it's also second hand still,
+              the price compared to how powerful it is was worth it, the rest of my devices I already had laying around.
+            </p>
+
+            <p>
+              First off, let's start with the most significant devices in my network, although I'm not going into the
+              finer details of their specs since I already listed their model name
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/server.jpg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>ThinkCentre M920</h3>
+
+            This is the most important device in my network, this acts as my server for hosting most of the services I'm
+            using. I was initially worried that the storage wasn't enough and the specs however
+            I overestimated that what is labeled as hardware requirements for systems assumed that it will be used for
+            enterprise situations, to which I am only using it for myself meaning the applicatios are running
+            not as heavily especially Wazuh
+            </p>
+
+          </div>
+
+          <div class="image-div">
+            <img src="../images/firewall.jpg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+
+            <h3>Optiplex 9020 Micro</h3>
+
+            This acts as my firewall / DHCP server / DNS Forwarder / NAT, I wanted to fit a NIC card inside however it
+            was out of my budget so I settled with using a USB to Ethernet Adapter for my LAN port, I'm not handling any
+            big data or speed necessary to need a dedicated NIC card
+            so far it's working perfectly. The specs of it is equal to my server, I actually wanted to make both into a
+            cluster but I opted out the idea since seperate function was better, also because it would be a hassle
+            to open my server, hub and firewall just so I can use the firewall. The specs are underutilized despite
+            running alongside Suricata and AdGuard
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/hub.jpg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+
+            <h3>Edimax Switch Hub</h3>
+
+            Acts as connection for both my laptop and server, since it's a hub it doesnt support anything higher than L1
+            so I don't have anything fancy like VLAN so no network segmentation other than NAT from my firewall.
+            Still, it's a nice addition to the network topology and hooking them up together with cables was fun,
+            luckily I did have enough cables lying around to spare for it.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </body>
+
 </html>

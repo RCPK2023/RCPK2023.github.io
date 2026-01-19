@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Update 2</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/content.css">
+</head>
+
+<body>
+  <div class="page-container">
+
+    <!-- Sidebar Component -->
+    <div class="sidebar" x-data="sidebar">
+      <!-- Main buttons -->
+      <div class="main-buttons">
+        <a href="../index.html">About Me</a>
+        <a>Progress</a>
+        <a>Network and Service Diagram</a>
+        <a href="hardware.html">Hardware</a>
+      </div>
+
+      <!-- Progress Section -->
+      <div class="progress-section">
+        <h2>Progress Updates</h2>
+        <a href="progress1.html" class="progress-link">
+          <div>
+            <h3>Progress: 1</h3>
+            <p>"First" official major update on the network and services</p>
+          </div>
+        </a>
+        <a href="progress2.html" class="progress-link">
+          <div>
+            <h3>Progress: 2</h3>
+            <p>"Second major update on the homelab</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="top-section">
+
+      <!-- Main content first -->
+      <div class="main-content">
+        <div class="content-box">
+
+          <div class="content-div">
+            <h1>Progress Report</h1>
+
+            <hr style="margin-bottom: 20px">
+
+            <p style="margin-bottom: 20px">
+              Well, it’s been SOME time since the last update on the homelab. I’ve been catching up on life, getting a
+              job,
+              and adjusting to a new environment, but we’re back for the second update of this project.
+            </p>
+
+            <p>
+              To kick off this update, I’ve added some devices and services that I’ve wanted to implement since the
+              first
+              report. I’ll start with the physical side of things before moving into the software and configuration
+              headaches that followed.
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/NetworkTopologyOpaque.svg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>Makeshift AP, PDU and PSU</h3>
+
+            Unfortunately, I didn’t take a picture of my actual setup, but this is the model I used: a PLDT
+            VMG3926-B10A.
+            It’s a fairly old device, but it still works, which already puts it above average in the “drawer of
+            forgotten
+            electronics” category.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              I decided to turn it into a makeshift access point so I could experiment with WPA2-Enterprise and
+              generally
+              explore Wi-Fi security, something I recently read about in a CCNA Sec+ book. The setup was straightforward
+              in theory. I plugged it into my laptop, accessed the web interface, and immediately learned an important
+              lesson: it only opens over HTTPS. I wouldn’t have known that if I hadn’t scanned it with Nmap and checked
+              the open ports first, which added a small detour to what I thought would be a five-minute job.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              After that, I disabled IPv6 since I’m not planning to wrestle with that particular dragon just yet, turned
+              off the DHCP service on the device itself, and pointed it to my DNS server instead. From there, I hooked
+              it
+              into my homelab switch, assigned it a static DHCP lease, and it worked as intended. I could now access my
+              services directly from my phone over Wi-Fi.
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/PLDT.jpeg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+              One mistake I did make, and will absolutely remind myself about later, was not assigning a proper static
+              IP
+              directly on the AP itself. Right now, it depends on OPNsense being up first to hand it an address. Without
+              that, it just keeps shouting DHCP discovery packets at the IP address of my DHCP server, which I confirmed
+              through Wireshark.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              As a small side note, that’s what I was doing for the first few weeks anyway: learning Wireshark. It
+              turned
+              out to be surprisingly useful, especially when you start needing to explain to yourself why something
+              “should work” but clearly doesn’t.
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/PLDTScreenshotfirst.png" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>PDU / PSU</h3>
+
+            I added a PDU into the setup to solve the very real and very technical problem of “not enough wall sockets.”
+            The PSU is plugged into the wall, which then feeds into the PDU, and everything else fans out from there.
+            </p>
+
+            <div class="image-div">
+              <img src="../images/AVRPDU.jpg" alt="Preview">
+            </div>
+
+            <p style="margin-bottom: 20px">
+              I am aware this setup is a bit questionable, especially since the AVR doesn’t have a grounding rod. The
+              plan
+              is to eventually save up for a proper UPS to make this whole power situation less of a gamble and more of
+              an actual design decision.
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/OPNsenseWifi.jpg" alt="Preview" style="width:400px; height:auto;">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>Services</h3>
+
+            On the services side, I added OpenMediaVault, Nagios, and Suricata. I haven’t fully implemented Nagios and
+            Suricata yet because the internet went down by the time I got home, which is always impressive timing.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              I like the idea of running a file server and eventually a full NAS. I don’t have spare hardware for that
+              yet, but I’m considering picking up a used PC later. For now, OpenMediaVault fills that role. Part of the
+              reason I chose it is because I still prefer working through a web interface over living entirely in the
+              console, but also because it’s complex enough that I can break it in interesting ways and then learn how
+              to fix it.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              Nagios came from workplace inspiration. We use it to monitor devices for availability, temperature, and
+              general health, so it made sense to bring that same mindset into the homelab. If I’m going to pretend this
+              is a “mini enterprise,” I might as well also pretend I care deeply about uptime graphs.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              Suricata was more of a rushed decision. I wanted to move forward with blue team testing, but I didn’t have
+              the time to properly integrate it with my Ubuntu server and Atomic Red Team. That’s something I’m planning
+              to revisit. I’m also looking into adding GeoLite data to Wazuh, partly for better monitoring and partly
+              because maps make everything look more impressive.
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/ServicesTopologyOpaque.svg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>Documentation</h3>
+
+            I didn’t realize how important documentation was until I found myself staring at logs at 3AM, trying to
+            figure out why my AdGuard upstreaming to my DNS resolver setup wasn’t working.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              I started writing down everything: service versions, exact LXC and VM configurations, basic inventory
+              management, which ports each service uses, and how DNS and DHCP are actually wired together. I pushed my
+              Nginx, AdGuard, OPNsense, and Wazuh configurations into Git. It took time, but it should save me a lot of
+              future guesswork, especially when I finally circle back to fixing the DNS mess.
+            </p>
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>DNS Problems</h3>
+
+            The initial setup was simple. Everything pointed to 192.168.50.2:53, which is my OPNsense DNS server. That
+            forwarded to AdGuard on the same IP, which then forwarded to Google DNS at 8.8.8.8. It worked, but all
+            AdGuard ever showed me was localhost, 127.0.0.1, instead of the actual client IPs. It also felt less secure
+            than I wanted.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              So I had what I considered a brilliant idea at the time. I moved the DNS server off port 53 to somewhere
+              in
+              the 20000 range, put AdGuard on 53, and then forwarded traffic from AdGuard to the relocated DNS server,
+              which I also changed from a forwarder into a resolver. The idea was more independence and better
+              visibility.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              The result was that I haven’t fully resolved it yet. I didn’t document the original setup properly, and to
+              make things more interesting, the internet connection was still down, so I couldn’t even verify whether
+              the new configuration worked. At least my local services still show up in AdGuard, so it wasn’t a total
+              loss. On a small side note, the server didn't have snip installed so bare with me on the phone captured
+              picture
+            </p>
+          </div>
+
+          <div class="image-div">
+            <img src="../images/AdguardUpdate.jpg" alt="Preview">
+          </div>
+
+          <div class="content-div">
+
+            <p style="margin-bottom: 20px">
+            <h3>Future Ideas</h3>
+
+            The third update will probably take some time. I don’t think this setup grows well in short bursts, so I’m
+            planning to use RustDesk to remotely connect to the homelab once the internet is stable again. That’s
+            something we use at work, and it should let me keep configuring services and finally start properly
+            tinkering with Wazuh and Suricata.
+            </p>
+
+            <p style="margin-bottom: 20px">
+              I’ve also been researching WT-32 and ESP32 boards for experimenting with WPA-Enterprise, since my current
+              AP doesn’t support it. The plan is to pair those with FreeRADIUS and see how far I can push that setup.
+            </p>
+
+            <p>
+              That’s about where the second update ends. If all goes well, expect another report in a month or two, at
+              best
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
+```

@@ -16,7 +16,9 @@ body {
   flex-direction: column;
   padding: 2vh 1vw;
   box-sizing: border-box;
-  height: clamp(700px, 100vh, 400px);
+  min-height: 200px;
+  max-height: 700px;
+  height: auto;
 }
 
 body.light .sidebar {
